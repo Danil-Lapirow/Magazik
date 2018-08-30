@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Magaz Oleney</title>
+    {% include 'css.html' %}
+    <style>
+        #sticky-sidebar {
+            max-width: 20%;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 btn-info" id="sticky-sidebar">
+                {% include 'filters.html' %}
+            </div>
+            <div class="col-md-8" id="main">
+                {% for product in products %}
+                <div class="card">
+{#                    <img class="card-img-top" src=".../100px180/" alt="Card image cap">#}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.title }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                {% for tag in product.tags.all %}
+                                    {{ tag.title }}
+                                {% endfor %}
+                            </li>
+                        </ul>
+                        <a href="/{{ product.id }}" class="btn btn-primary">Read-more</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
