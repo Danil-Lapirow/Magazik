@@ -6,23 +6,52 @@
         <label for="price_max">Max price</label>
         <input id="price_max" type="number" name="price_max" value="{{ price_max }}">
     </div>
-<div class="dropdown">
-    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Tags
-    </a>
-
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        {% for tag in tags %}
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <div class="input-group-text">
-                    <input type="checkbox" name="tags" id="check{{ tag.id }}" value="{{ tag.id }}"/>{# {% inlist tag.id checked_tags as checked %}{% if checked %} checked {% endif %} #}
-                </div>
-            </div>
-            <label for="check{{ tag.id }}" class="form-control" >{{ tag.title }}</label>
+    <label for="age">Age</label>
+    <div class="btn-group">
+        <input id="age" type="number" name="age" value="{{ age }}" class="btn btn-danger">
+        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" ontoggle="" aria-haspopup="true" aria-expanded="false">
+            <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu">
+            <label for="age_min">Min age</label>
+            <input id="age_min" type="number" name="age_min" value="{{ age_min }}">
+            <label for="age_max">Max age</label>
+            <input id="age_max" type="number" name="age_max" value="{{ age_max }}">
         </div>
-        {% endfor %}
     </div>
-</div>
-<input type="submit" title="">
+    <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tags
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            {% for tag in tags %}
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" name="tags" id="check{{ tag.id }}" value="{{ tag.id }}"/>{# {% inlist tag.id checked_tags as checked %}{% if checked %} checked {% endif %} #}
+                    </div>
+                </div>
+                <label for="check{{ tag.id }}" class="form-control" >{{ tag.title }}</label>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <input type="submit" title="">
 </form>
+<script>
+    function ageDisableEnable() {
+        var age_min = $('#age_min');
+        var age_max = $('#age_max');
+        var age = $('#age');
+        if (age_min.val().length === 0 && age_max.val().length === 0){
+            age.disabled = false;
+            age.val("");
+        }
+        else if (age_min.val().length !== 0 || age_max.val().length !== 0){
+            age.disabled = true;
+        }
+    }
+    $('#age_min').change(ageDisableEnable());
+    $('#age_max').change(ageDisableEnable());
+</script>

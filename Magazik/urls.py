@@ -21,5 +21,5 @@ from core.views import HomeView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', HomeView.as_view(), name='home'),
-    url(r'^\d$', HomeView.as_view()),
+    url(r'^(?P<pk>\d)$', HomeView.as_view()),
 ]
