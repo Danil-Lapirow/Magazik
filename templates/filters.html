@@ -1,5 +1,5 @@
 {% load my_tags %}
-<form method="get" action=".">{% csrf_token %}
+<form method="post" action=".">{% csrf_token %}
     <div class="form-group">
         <label for="price_min">Min price</label>
         <input id="price_min" type="number" name="price_min" value="{{ price_min }}">
