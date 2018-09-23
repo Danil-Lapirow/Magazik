@@ -18,6 +18,23 @@
             <label for="age_max">Max age</label>
             <input id="age_max" type="number" name="age_max" value="{{ age_max }}">
         </div>
+        <script>
+            function ageDisableEnable() {
+                console.log(234)
+                if ($('#age_min').val().length === 0 && $('#age_max').val().length === 0){
+                    $('#age').prop('disabled', false);
+                    $('#age').val("");
+                }
+                else if ($('#age_min').val().length !== 0 || $('#age_max').val().length !== 0){
+                    $('#age').prop('disabled', true);
+                    $('#age').val("");
+                }
+            }
+            $(document).ready(function () {
+                $('#age_min').keyup(ageDisableEnable);
+                $('#age_max').keyup(ageDisableEnable);
+            });
+        </script>
     </div>
     <div class="dropdown">
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,19 +56,3 @@
     </div>
     <input type="submit" title="">
 </form>
-<script>
-    function ageDisableEnable() {
-        var age_min = $('#age_min');
-        var age_max = $('#age_max');
-        var age = $('#age');
-        if (age_min.val().length === 0 && age_max.val().length === 0){
-            age.disabled = false;
-            age.val("");
-        }
-        else if (age_min.val().length !== 0 || age_max.val().length !== 0){
-            age.disabled = true;
-        }
-    }
-    $('#age_min').change(ageDisableEnable());
-    $('#age_max').change(ageDisableEnable());
-</script>
