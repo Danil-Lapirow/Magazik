@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.title }}</title>
+
+    {% include 'css.html' %}
+
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <div class="row">
+            <h1>{{ object.title }}</h1>
+        </div>
+        <div class="row">
+            <p>{{ object.description }}</p>
+        </div>
+        <div class="row">
+            <p>Age: {{ object.age }}</p>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_Irn2ZFdfd4dvVbW98k6ID0RJ"
+                data-amount="{{ object.price }}00"
+                data-name="{{ object.title }}"
+                data-currency="usd">
+            </script>
+            <input hidden="true" name="price" value="{{ object.price }}00">
+            <input hidden="true" name="title" value="{{ object.title }}">
+        </form>
+    </div>
+</body>
+</html>

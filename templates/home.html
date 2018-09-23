@@ -24,6 +24,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ product.title }}</h5>
                         <p class="card-text">{{ product.description }}</p>
+                        <p class="card-text">{{ product.price }}$</p>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
                                 {% for tag in product.tags.all %}
